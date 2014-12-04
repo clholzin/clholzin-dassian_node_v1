@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="datajs-1.1.2.min.js"></script>
+    <script>
+    function dataRequest(){
+      var build = '';
+      OData.read({ requestUri: "http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set?$format=json&$top=5",
+        method: "GET",
+        enableJsonpCallback: false,
+        datatype: "json",
+        user: 'cholzinger',
+        password: 'Welcome14',
+        headers: {    'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': 'GET',
+                      'Content-Type': 'application/json',
+                      'Accept': 'text/html',
+                      'Accept': 'application/json'
+                      }
+                  },
+        function (data, response) {
+            _.each(data.d.results, function(person){
+              build += '<div class="well p">';
+              build += 'Id: '+ person.Persnumber +'<br>';
+              build += 'First Name: '+ person.NameFirst +'<br>';
+              build += 'Last Name: '+ person.NameLast +'<br>';
+              build += 'Email: '+ person.smtpAddr;
+              build += '</div>';
+                //console.log(JSON.stringify(person));
+            });
+            $('#target-element-id').html(build);
+          console.log("Operation succeeded.");
+        }, function (err) {
+          alert("Error occurred " + err.message);
+        });
+
+    };
+    dataRequest();
+    </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="jumbotron">
+    <h1>Odata Request</h1>
+  </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Data Set: ZUSER_SRV/USR01Set</h3>
+      </div>
+      <div class="panel-body">
+        <div id="target-element-id"></div>
+      </div>
+  </div><!--end panel-->
+  </div>
+
+  </body>
+</html>

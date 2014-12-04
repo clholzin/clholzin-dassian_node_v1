@@ -1,0 +1,80 @@
+doctype
+html
+  head
+    title Node.js / Backbone.js Example
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css')
+    script(src='javascripts/datajs-1.1.2.min.js')
+  body
+    div.h1.well Tasks
+    div.panel#tasks
+    script(id="model_template", type="text/template")
+      | <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      |   <div class="modal-dialog">
+      |     <div class="modal-content">
+      |       <div class="modal-header">
+      |         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      |         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      |       </div>
+      |       <div class="modal-body">
+      |        <%= userid_template({ user: user }) %>
+      |       </div>
+      |       <div class="modal-footer">
+      |         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      |         <button type="button" class="btn btn-primary">Save changes</button>
+      |       </div>
+      |     </div>
+      |   </div>
+      | </div>
+    script(id="userid_template", type="text/template")
+      | <div>
+      |   Id: <%= user.Persnumber %> <br>
+      |   First Name: <%= user.NameFirst %> <br>
+      |   Last Name: <%= user.NameLast %> <br>
+      |   Email: <%= user.smtpAddr %>
+      | </div>
+    script(id='task_form', type='text/template')
+      |<div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
+      | <form action='' id='task-form'>
+      |   <fieldset>
+      |     <div class='col-lg-12'>
+      |       <legend>Add a task</legend>
+      |       <div class="input-group">
+      |         <input type='text' name='title' class='task-title form-control' placeholder='Add Task here!' required autofocus/>
+      |           <span class="input-group-btn">
+      |             <input class='btn btn-default' type='submit' value='Submit' />
+      |           </span>
+      |       </div>
+      |    </div>
+      |   </fieldset>
+      | </form>
+      |<br>
+      |</div>
+    script(id='task_template', type='text/template')
+      |   <li data-id="<%= task.id %>" class="list-group-item">
+      |     <button class='btn btn-danger delete pull-right btn-sm'>Done!</button>
+      |     <button class='btn btn-info update pull-right btn-sm' id='<%= task.id %>'>update</button>
+      |     <div class='change' id="<%= task.id %>"><%= task.get('title') %></div>
+      |     <input type='text' class='hide' id='<%= task.id %>' value=<%= task.get('title') %>/>
+      |   </li>
+    script(id='tasks_template', type='text/template')
+      | <%= task_form() %>
+      | <div class='col-lg-6 col-md-6 col-sm-6 col-xs-12'>
+      |   <div class='panel panel-default'>
+      |     <div class="panel-heading"><h3 class="panel-title">Pending Tasks to complete.</h3></div>
+      |       <div class="panel-body">
+      |         <ul class="list-group" id="tasks_list">
+      |           <% _.each(tasks, function(task){ %>
+      |           <%= task_template({ task: task }) %>
+      |         <% }); %>
+      |         </ul>
+      |     <div id="target-element-id"></div>
+      |     </div>
+      |   </div>
+      | </div>
+    script(src='//code.jquery.com/jquery-1.11.0.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+    script(src='javascripts/application.js')
+    script var tasks = new App.Tasks;tasks.reset(!{tasks});$(function() {App.init();});

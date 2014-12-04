@@ -1,0 +1,22 @@
+{
+  "name": "backbone_example",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.10.1",
+    "mysql": "2.5.3",
+    "mongojs": "0.4.3",
+    "jade": "1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-api-benchmark": "^0.1.0"
+  },
+  "description": "Sample Tasks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "clholzin",
+  "license": "ISC"
+}

@@ -1,0 +1,35 @@
+doctype
+html
+  head
+    title Node.js / Backbone.js Example
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css')
+    script(src='//code.jquery.com/jquery-1.11.0.min.js')
+  body
+    h1 Tasks
+    div#tasks
+    script(id='task_form', type='text/template')
+      | <form action='' id='task-form' class='col-lg-7'>
+      |   <fieldset class="form-group">
+      |     <legend>Add a task</legend>
+      |     <input type='text' name='title' class='task-title form-control col-md-7' focus required/>
+      |     <input type='submit' class='btn btn-primary col-md-3' value='Submit' />
+      |   </fieldset>
+      | </form>
+    script(id='task_template', type='text/template')
+      | <li data-id='<%= task.id %>' class='list-group-item'>
+      |   <%= task.get('title') %>
+      |   <button class='btn btn-success'>Done!</button>
+      | </li>
+    script(id='tasks_template', type='text/template')
+      | <%= task_form() %>
+      | <ul class='list-group'>
+      |   <% _.each(tasks, function(task){ %>
+      |     <%= task_template({ task: task }) %>
+      |   <% }); %>
+      | </ul>
+    script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')
+    script(src='javascripts/application.js')
+    script tasks.reset(!{tasks}); $(function() { App.init(); });

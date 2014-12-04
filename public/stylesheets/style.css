@@ -1,0 +1,11 @@
+body {
+  padding: 50px;
+  font: 14px Helvetica, Arial, sans-serif;
+}
+div {}
+.delete{margin:-4px 0 0 2px;}
+.update,.send{margin:-4px 0 0 2px;}
+.hide{display:none;}
+a {
+  color: #00b7ff;
+}
