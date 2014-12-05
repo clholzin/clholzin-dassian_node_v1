@@ -22,6 +22,7 @@ RUN make
 RUN make install
 
 RUN     npm install
+ADD /
 WORKDIR /
 ENV    PORT 3001
 EXPOSE 3001
