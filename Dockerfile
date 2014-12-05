@@ -1,16 +1,33 @@
-#192.168.59.103
-
-FROM ubuntu:12.04
+FROM       ubuntu:14.04
 MAINTAINER Craig Holzinger
-#RUN apt-get update
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-# Install Node.js and npm
-RUN     yum install -y npm
 
-# Bundle app source
-COPY . /src
-# Install app dependencies
-RUN cd /src; npm install
+# Update packages and install dependencies.
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    python \
+    make \
+    curl
 
-EXPOSE  3001
-CMD ["node", "/src/app.js"]
+# Gets Node.js v0.10.29
+RUN     mkdir -p /tmp/node && cd /tmp/node
+WORKDIR /tmp/node
+RUN     curl -s0 http://nodejs.org/dist/v0.10.29/node-v0.10.29.tar.gz | tar -zx
+RUN     cd node-v0.10.29
+WORKDIR /tmp/node/node-v0.10.29
+
+# Install Node.js
+RUN ./configure
+RUN make
+RUN make install
+
+#ADD     src /src
+#WORKDIR /src
+RUN     npm install
+
+ENV    PORT 3001
+EXPOSE 3001
+
+CMD        ["app.js"]
+ENTRYPOINT ["node"]
+
