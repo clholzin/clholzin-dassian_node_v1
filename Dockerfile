@@ -21,8 +21,6 @@ RUN ./configure
 RUN make
 RUN make install
 
-#ADD     src /src
-#WORKDIR /src
 RUN     npm install
 
 ENV    PORT 3001
