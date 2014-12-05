@@ -46,11 +46,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(cors({
     allowedOrigins: [
-        'netflix.com/v2/',
-        'dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/',
-        'wddg7.dassian.com:8100/sap/opu/odata/sap/'
+        '*'
     ]
-}))
+}));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public/views'));
 app.use(express.static(__dirname + '/public/generated/'));
@@ -58,10 +56,7 @@ app.use(express.static(__dirname + '/public/javascripts'));
 app.use(express.static(__dirname + '/public/stylesheets'));
 
 console.log(process.pid);
-//http://localhost:9595/api/users?$format=json --Nginx
-//http://apps.dassian.com/proxy_test/sap?$format=json  --Apache
-//http://wddg7.dassian.com:8100/sap/opu/odata/sap/ZUSER_SRV/USR01Set? --Original
-app.use('/sap', proxy(url.parse('http://wddg7.dassian.com:8100/sap/opu/odata/sap/ZUSER_SRV/USR01Set?$sap-user=cholzinger&$sap-password=Welcome14')));
+
 // a middleware with no mount path; gets executed for every request to the app
 app.use(function(req, res, next) {
 res.header('Access-Control-Allow-Origin', '*');
