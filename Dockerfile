@@ -1,25 +1,16 @@
-FROM ubuntu
+#FROM ubuntu
 MAINTAINER Craig Holzinger <clholzin@yahoo.com>
+FROM    centos:centos6
 
-# install our dependencies and nodejs
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get -y install python-software-properties git build-essential
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
-RUN apt-get -y install nodejs
+# Enable EPEL for Node.js
+RUN     rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+# Install Node.js and npm
+RUN     yum install -y npm
 
-# use changes to package.json to force Docker not to use the cache
-# when we change our application's nodejs dependencies:
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /opt/src && cp -a /tmp/node_modules /opt/src/
+# Bundle app source
+COPY . /src
+# Install app dependencies
+RUN cd /src; npm install
 
-# From here we load our application's code in, therefore the previous docker
-# "layer" thats been cached will be used if possible
-WORKDIR /opt/src
-ADD . /opt/src
-
-EXPOSE 3000
-
-CMD ["node", "app.js"]
+EXPOSE  3001
+CMD ["node", "/src/app.js"]
