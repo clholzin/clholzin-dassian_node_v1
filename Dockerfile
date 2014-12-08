@@ -15,7 +15,7 @@ WORKDIR /src
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
-ADD package.json /src/package.json
+#ADD package.json /src/package.json
 RUN cd /src npm install
 RUN mkdir -p /src && cp -a /src/node_modules /src/
 
