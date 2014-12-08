@@ -27,7 +27,7 @@ RUN add-apt-repository -y ppa:clholzin/clholzin-dassian_node_v1
 # Install Node.js
 RUN ./configure
 RUN make
-#RUN make install
+RUN make install
 #RUN npm install
 
 ADD src /src
