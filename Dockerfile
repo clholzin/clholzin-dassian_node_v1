@@ -10,7 +10,8 @@ RUN     yum install -y npm
 # Bundle app source
 COPY . /src
 # Install app dependencies
-RUN cd /src; npm install
+RUN cd ./src
+RUN npm install
 
 EXPOSE  3001
 CMD ["node", "/src/app.js"]
