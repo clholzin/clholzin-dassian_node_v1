@@ -1,8 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Craig Holzinger
 # Update packages and install dependencies.
-RUN apt-get update
-# && apt-get install -y install build-essential \ make
+RUN apt-get update && apt-get install -y install build-essential \ make \ node \ npm
 # \
 #gcc \
 #g++ \
