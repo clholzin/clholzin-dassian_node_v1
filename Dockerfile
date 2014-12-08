@@ -5,7 +5,7 @@ MAINTAINER Craig Holzinger <clholzin@yahoo.com>
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 # RUN apt-get -y install python-software-properties git build-essential
-RUN apt-get -y install git build-essential
+# RUN apt-get -y install git build-essential
 RUN add-apt-repository -y ppa:clholzin/clholzin-dassian_node_v1
 RUN apt-get update
 RUN apt-get -y install nodejs
