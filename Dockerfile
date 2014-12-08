@@ -1,21 +1,21 @@
 FROM ubuntu:14.04
 MAINTAINER Craig Holzinger
 # Update packages and install dependencies.
-#RUN apt-get update && apt-get install -y install build-essential \ 
-# \
-#gcc \
-#g++ \
-#python \
-#make \
-#curl
+RUN apt-get update && apt-get install -y install build-essential  \
+gcc \
+g++ \
+python \
+make \
+curl \
+nodejs
 
 # install our dependencies and nodejs
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN apt-get update
+#RUN apt-get update
 RUN apt-get -y install python-software-properties git build-essential
 RUN add-apt-repository -y ppa:clholzin/clholzin-dassian_node_v1
-RUN apt-get update
-RUN apt-get -y install nodejs
+#RUN apt-get update
+#RUN apt-get -y install nodejs
 
 # Gets Node.js v0.10.29
 # RUN mkdir -p /tmp/node && cd /tmp/node
