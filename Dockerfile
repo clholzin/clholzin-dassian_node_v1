@@ -10,7 +10,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt
 RUN apt-get update
 RUN apt-get -y install nodejs
 
-ADD package.json /src/package.json
+ADD src /src/package.json
 RUN cd /src && npm install
 RUN mkdir -p /src && cp -a /node_modules /src/
 
