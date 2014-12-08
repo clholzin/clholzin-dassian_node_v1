@@ -14,13 +14,13 @@ RUN apt-get -y install nodejs
 
 #ADD package.json /src/package.json
 #RUN cd /src && npm install
-ADD . /src
+ADD . /src/package.json
 RUN npm install
 RUN mkdir -p /src && cp -a /node_modules /src/
 
 # From here we load our application's code in, therefore the previous docker
 # "layer" thats been cached will be used if possible
-#ADD . /src
+ADD src /src
 WORKDIR /src
 
 ENV    PORT 3001
