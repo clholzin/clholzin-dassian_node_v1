@@ -5,7 +5,7 @@ MAINTAINER Craig Holzinger <clholzin@yahoo.com>
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 
 RUN apt-get update
-RUN apt-get -y install nodejs
+RUN apt-get -y install nodejs npm
 
 # From here we load our application's code in, therefore the previous docker
 # "layer" thats been cached will be used if possible
