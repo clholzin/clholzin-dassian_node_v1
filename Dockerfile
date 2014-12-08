@@ -1,7 +1,9 @@
 FROM ubuntu:14.04
 MAINTAINER Craig Holzinger
 # Update packages and install dependencies.
-RUN apt-get update && apt-get install -y \
+RUN apt-get update
+# && apt-get install -y
+# \
 #gcc \
 #g++ \
 #python \
