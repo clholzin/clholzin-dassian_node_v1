@@ -2,11 +2,11 @@ FROM ubuntu:14.04
 MAINTAINER Craig Holzinger
 # Update packages and install dependencies.
 RUN apt-get update && apt-get install -y \
-gcc \
-g++ \
-python \
-make \
-curl
+#gcc \
+#g++ \
+#python \
+#make \
+#curl
 # Gets Node.js v0.10.29
 # RUN mkdir -p /tmp/node && cd /tmp/node
 # WORKDIR /tmp/node
