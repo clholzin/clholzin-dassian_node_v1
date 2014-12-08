@@ -11,15 +11,16 @@ RUN apt-get -y install nodejs
 
 # use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /src && cp -a /tmp/node_modules /src/
+ADD package.json /src/package.json
+RUN npm install
+RUN mkdir -p /src && cp -a /src/node_modules /src/
 
 # From here we load our application's code in, therefore the previous docker
 # "layer" thats been cached will be used if possible
 WORKDIR /src
 ADD . /src
 
-EXPOSE 3000
+ENV    PORT 3001
+EXPOSE 3001
 
 CMD ["node", "app.js"]
