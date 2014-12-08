@@ -30,14 +30,15 @@ RUN make
 #RUN make install
 #RUN npm install
 
-WORKDIR /
-ADD package.json /package.json
-RUN cd / && npm install
-RUN mkdir -p /scr && cp -a /node_modules /scr/
-
-
 ADD src /src
 WORKDIR /src
+
+ADD package.json /package.json
+RUN npm install
+RUN mkdir -p /src && cp -a /node_modules /src/
+
+
+
 ENV PORT 3001
 EXPOSE 3001
 ##CMD ["app.js"]
