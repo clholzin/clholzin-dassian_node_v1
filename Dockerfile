@@ -1,16 +1,11 @@
-FROM ubuntu
-
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-#RUN apt-get update
-#RUN apt-get -y install python-software-properties git build-essential
-#RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
-RUN apt-get -y install nodejs
-
-WORKDIR /src
-
+FROM centos:6.4
+# Enable EPEL for Node.js
+RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+# Install Node.js and npm
+RUN yum install -y npm
+# App
 ADD . /src
-RUN npm install
+# Install app dependencies
+RUN cd /src; npm install
 EXPOSE 3001
-
-CMD ["node", "app.js"]
+CMD ["node", "/src/index.js"]
