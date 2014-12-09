@@ -3,8 +3,7 @@ clholzin-dassian_node_v1
 
 Node application for cloning w/ docker
 
-use docker to: docker pull clholzin/dassian-node-v1
--
-or
--
-docker run -p 3001:3001 -d clholzin/dassian-node-v1
+    docker pull clholzin/node_app
+    docker run -d -p 49160:3001 clholzin/node_app:v1 nodejs home/clholzin-dassian_node_v1/src/app.js
+
+    
