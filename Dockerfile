@@ -1,6 +1,6 @@
 FROM node
 MAINTAINER Clholzin <clholzin@yahoo.com>
-ADD src /src/
+ADD . /src
 WORKDIR /src
 RUN npm install
 RUN apt-get update
