@@ -6,4 +6,7 @@ Node application for cloning w/ docker
     docker pull clholzin/node_app
     docker run -d -p 49160:3001 clholzin/node_app:v1 nodejs home/clholzin-dassian_node_v1/src/app.js
 
++ Requires MongoDB - collection named:Tasks
+
+    - More setup needed if you pull docker file.
     
