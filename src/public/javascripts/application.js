@@ -41,34 +41,11 @@ $('#target-element-id').on('click','a.product',function(event){
 
 });
 
-function playJson(){
-    var build_data = {"d":{"results":[{"__metadata":{"id":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('22665')","uri":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('22665')","type":"ZUSER_SRV.USR01"},"Persnumber":"22665","NameFirst":"Simon","NameLast":"Pugsley","SmtpAddr":"spugsley@dassian.com"},{"__metadata":{"id":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('22728')","uri":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('22728')","type":"ZUSER_SRV.USR01"},"Persnumber":"22728","NameFirst":"Allen","NameLast":"Ytzen","SmtpAddr":"aytzen@dassian.com"},{"__metadata":{"id":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23306')","uri":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23306')","type":"ZUSER_SRV.USR01"},"Persnumber":"23306","NameFirst":"","NameLast":"crose@dassian.com","SmtpAddr":"crose@dassian.com"},{"__metadata":{"id":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23324')","uri":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23324')","type":"ZUSER_SRV.USR01"},"Persnumber":"23324","NameFirst":"Allen","NameLast":"Ytzen","SmtpAddr":"aytzen@dassian.com"},{"__metadata":{"id":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23326')","uri":"http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set('23326')","type":"ZUSER_SRV.USR01"},"Persnumber":"23326","NameFirst":"John","NameLast":"Gardner","SmtpAddr":"jgardner@dassian.com"}]}};
-        var html = '';
-          html += '<ul class="list-group">';
-          _.each(build_data.d.results, function(person){
-          html += '<li class="list-group-item" data-id="'+ person.Persnumber +'">';
-          html += 'Info: <a href="'+ person.__metadata.uri +'?$format=json" target="_blank"><button class="btn btn-default view-model btn-sm pull-right">View</button></a><br>';
-          html += 'Id: '+ person.Persnumber +'<br>';
-          html += 'First Name: '+ person.NameFirst +'<br>';
-          html += 'Last Name: '+ person.NameLast +'<br>';
-          html += 'Email: '+ person.smtpAddr;
-          html += '</li>';
-            //console.log(JSON.stringify(person));
-        });
-          html += '</ul>';
-        $('div#target-element-id').html(html);
-        };
-}
 
 
 
-//http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set/
-//netflix.com/v2/Catalog/Genres?$format=json
-//http://dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set?$format=json&sap-ds-debug=true&$filter=startswith(NameFirst,A)&$skip=12&$top=5
-//http://odata.dsn-sap-dg7.dassian.loc:8000/sap/opu/odata/sap/ZUSER_SRV/USR01Set?$format=json&$top=5
-//http://services.odata.org/OData/OData.svc/Categories?$format=json
-//http://wddg7.dassian.com:8100/sap/opu/odata/sap/ZUSER_SRV/USR01Set?$format=json WORKS
-//https://cors-anywhere.herokuapp.com/services.odata.org/Northwind/Northwind.svc/
+
+
 function dataRequest(){
   var build = '';
   OData.read({
@@ -108,54 +85,6 @@ function dataRequest(){
 
 
 
-
-
-  /**$.ajax({
-    url: "http://odata.netflix.com/v2/Catalog/Genres?$format=json",//?$format=json
-    contentType: 'application/json; charset=utf-8',
-    type: 'GET',
-    xhrFields: {
-      withCredentials: false
-    },
-     headers: {
-       Accept: "application/json",
-       "Access-Control-Allow-Headers",
-       "Origin, X-Requested-With, Content-Type, Accept"
-    // Set any custom headers here.
-    // If you set any non-simple headers, your server must include these
-    // headers in the 'Access-Control-Allow-Headers' response header.
-  },
-    dataType: 'jsonp',
-    error: function (xhr, status) {
-        alert(status);
-    },
-    done: function (result) {
-        console.log('result');
-      var echo = '';
-        echo += '<ul>';
-          _.each(results, function(result){
-            echo += '<li>'+result+'</li>';
-        });
-          echo += '</ul>';
-          $('div#target-element-id').html('echo');
-
-    }
-});//ajax request**/
-
-/**
-OData.read({requestUri:"http://odata.netflix.com/v2/Catalog/Genres?$format=json",
-  headers: { Accept: "application/json; charset=utf-8" }},
-  function (data, request) {
-    var html = "";
-    for (var i = 0; i < data.results.length; i++) {
-      html += "<li>" + data.results[i].Name + "</li>";
-    }
-    document.getElementById("target-element-id").innerHTML = html;
-  }, function(err){
-    console.log(err);
-    alert("Error occurred " + err.message);
-    $('#target-element-id').html('No Netflix Results...');
-});//END ODATA**/
 };
 
 App.Task = Backbone.Model.extend({
